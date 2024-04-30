@@ -44,6 +44,7 @@ while True:
     # Capture frames when a face is detected
     if len(faces) > 0:
         frame_count += 1
+        # Change the value from 5 to number of frames you want to capture
         if frame_count <= 5:
             save_image(frame, dataset_path)
         else:
