@@ -11,26 +11,13 @@ cap.set(4, 480)
 
 imgBackground = cv2.imread('resources/bg-img.png')
 
-folderModePath = 'resources/Modes'
-modePathList = os.listdir(folderModePath)
-imgModeList = []
-
-for path in modePathList:
-    imgModeList.append(cv2.imread(os.path.join(folderModePath, path)))
-
-
 file = open('EncodeFile.p', 'rb')
 encodeListKnownWithNames = pickle.load(file)
 file.close()
 encodeListKnown, person_name = encodeListKnownWithNames
 
-
-modeType = 0
 counter = 0
 id = -1
-
-
-signal = '0'
 
 start_time = time.time()  
 
@@ -44,7 +31,6 @@ while time.time() - start_time <= 10:
     encodeCurrFrame = face_recognition.face_encodings(imgS, faceCurrFrame)
     
     imgBackground[120:120+480, 70:70+640] = img
-    imgBackground[410:410+150, 800:800+350] = imgModeList[modeType]
     
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     gray_frame = cv2.cvtColor(imgBackground, cv2.COLOR_BGR2GRAY)
